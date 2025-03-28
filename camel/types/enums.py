@@ -107,6 +107,9 @@ class ModelType(UnifiedModelType, Enum):
     CLAUDE_3_5_SONNET = "claude-3-5-sonnet-latest"
     CLAUDE_3_5_HAIKU = "claude-3-5-haiku-latest"
     CLAUDE_3_7_SONNET = "claude-3-7-sonnet-latest"
+    CLAUDE_3_5_SONNET_VERTEX = "claude-3-5-sonnet-v2@20241022"
+    CLAUDE_3_5_HAIKU_VERTEX = "claude-3-5-haiku-v2@20241022"
+    CLAUDE_3_7_SONNET_VERTEX = "claude-3-7-sonnet@20250219"
 
     # Nvidia models
     NVIDIA_NEMOTRON_340B_INSTRUCT = "nvidia/nemotron-4-340b-instruct"
@@ -604,6 +607,14 @@ class ModelType(UnifiedModelType, Enum):
             ModelType.AIML_MIXTRAL_8X7B,
             ModelType.AIML_MISTRAL_7B_INSTRUCT,
         }
+    
+    @property
+    def is_anthropic_vertex(self) -> bool:
+        return self in {
+            ModelType.CLAUDE_3_5_SONNET_VERTEX,
+            ModelType.CLAUDE_3_5_HAIKU_VERTEX,
+            ModelType.CLAUDE_3_7_SONNET_VERTEX,
+        }
 
     @property
     def token_limit(self) -> int:
@@ -778,6 +789,9 @@ class ModelType(UnifiedModelType, Enum):
             ModelType.CLAUDE_3_5_HAIKU,
             ModelType.CLAUDE_3_7_SONNET,
             ModelType.YI_MEDIUM_200K,
+            ModelType.CLAUDE_3_7_SONNET_VERTEX,
+            ModelType.CLAUDE_3_5_SONNET_VERTEX,
+            ModelType.CLAUDE_3_5_HAIKU_VERTEX,
         }:
             return 200_000
         elif self in {
@@ -985,6 +999,7 @@ class ModelPlatformType(Enum):
     SILICONFLOW = "siliconflow"
     AIML = "aiml"
     VOLCANO = "volcano"
+    ANTHROPIC_VERTEX = "anthropic-vertex"
 
     @classmethod
     def from_name(cls, name):
@@ -1129,6 +1144,11 @@ class ModelPlatformType(Enum):
     def is_volcano(self) -> bool:
         r"""Returns whether this platform is volcano."""
         return self is ModelPlatformType.VOLCANO
+
+    @property
+    def is_anthropic_vertex(self) -> bool:
+        r"""Returns whether this platform is Anthropic Vertex."""
+        return self is ModelPlatformType.ANTHROPIC_VERTEX
 
 
 class AudioModelType(Enum):

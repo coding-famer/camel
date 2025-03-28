@@ -44,6 +44,7 @@ from camel.models.yi_model import YiModel
 from camel.models.zhipuai_model import ZhipuAIModel
 from camel.types import ModelPlatformType, ModelType, UnifiedModelType
 from camel.utils import BaseTokenCounter
+from camel.models.anthropic_vertex_model import AnthropicVertexModel
 
 
 class ModelFactory:
@@ -122,6 +123,8 @@ class ModelFactory:
             model_class = AzureOpenAIModel
         elif model_platform.is_anthropic and model_type.is_anthropic:
             model_class = AnthropicModel
+        elif model_platform.is_anthropic_vertex and model_type.is_anthropic_vertex:
+            model_class = AnthropicVertexModel
         elif model_platform.is_groq and model_type.is_groq:
             model_class = GroqModel
         elif model_platform.is_openrouter and model_type.is_openrouter:

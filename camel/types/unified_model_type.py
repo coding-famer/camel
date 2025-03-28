@@ -134,6 +134,11 @@ class UnifiedModelType(str):
         return True
 
     @property
+    def is_anthropic_vertex(self) -> bool:
+        r"""Returns whether this platform is Anthropic Vertex."""
+        return True
+
+    @property
     def support_native_structured_output(self) -> bool:
         r"""Returns whether the model supports native structured output."""
         return False

@@ -340,6 +340,24 @@ class AnthropicTokenCounter(BaseTokenCounter):
         )
 
 
+class AnthropicVertexTokenCounter(AnthropicTokenCounter):
+    @dependencies_required('anthropic')
+    def __init__(self, model: str):
+        r"""Constructor for the token counter for Anthropic Vertex models.
+
+        Args:
+            model (str): The name of the Anthropic Vertex model being used.
+        """
+        from anthropic import AnthropicVertex
+        import os
+        project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "typographic-attack-clip")
+        region = os.environ.get("GOOGLE_CLOUD_REGION", "europe-west1")
+        self.client = AnthropicVertex(
+            project_id=project_id,
+            region=region,
+        )
+        self.model = model
+
 class LiteLLMTokenCounter(BaseTokenCounter):
     def __init__(self, model_type: UnifiedModelType):
         r"""Constructor for the token counter for LiteLLM models.

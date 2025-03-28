@@ -167,6 +167,9 @@ class GeminiModel(BaseModelBackend):
         else:
             return await self._arequest_chat_completion(messages, tools)
 
+    # def _convert_openai_tool_schema_to_openapi(self, tools: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        
+
     def _request_chat_completion(
         self,
         messages: List[OpenAIMessage],
@@ -197,6 +200,8 @@ class GeminiModel(BaseModelBackend):
                                     ] = prop_value['description']
 
             request_config["tools"] = tools
+
+        print(request_config["tools"])
 
         return self._client.chat.completions.create(
             messages=messages,

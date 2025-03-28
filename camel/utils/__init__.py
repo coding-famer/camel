@@ -44,6 +44,7 @@ from .deduplication import DeduplicationResult, deduplicate_internally
 from .response_format import get_pydantic_model
 from .token_counting import (
     AnthropicTokenCounter,
+    AnthropicVertexTokenCounter,
     BaseTokenCounter,
     LiteLLMTokenCounter,
     MistralTokenCounter,
@@ -59,6 +60,7 @@ __all__ = [
     "get_task_list",
     "check_server_running",
     "AnthropicTokenCounter",
+    "AnthropicVertexTokenCounter",
     "get_system_information",
     "to_pascal",
     "get_model_encoding",

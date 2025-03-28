@@ -46,6 +46,7 @@ from .vllm_model import VLLMModel
 from .volcano_model import VolcanoModel
 from .yi_model import YiModel
 from .zhipuai_model import ZhipuAIModel
+from .anthropic_vertex_model import AnthropicVertexModel
 
 __all__ = [
     'BaseModelBackend',
@@ -84,4 +85,5 @@ __all__ = [
     'BaseAudioModel',
     'SiliconFlowModel',
     'VolcanoModel',
+    'AnthropicVertexModel',
 ]
